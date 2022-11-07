@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   sidebar_bigeagle: ^0.2.2+1
   sidebarx: ^0.14.0
+  flutter_web_data_table: ^1.0.0
+  responsive_table: ^0.2.0+2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

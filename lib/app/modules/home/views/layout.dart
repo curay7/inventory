@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:get/get.dart';
+import 'package:stockinv/app/modules/home/views/home_product.dart';
+import 'package:stockinv/app/modules/home/views/home_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -118,28 +120,28 @@ class ExampleSidebarX extends StatelessWidget {
         );
       },
       items: [
+        const SidebarXItem(
+          icon: Icons.search,
+          label: 'Product',
+        ),
         SidebarXItem(
-          icon: Icons.home,
-          label: 'Home',
+          icon: Icons.history,
+          label: 'History',
           onTap: () {
             debugPrint('Home');
           },
         ),
         const SidebarXItem(
-          icon: Icons.search,
-          label: 'Search',
+          icon: Icons.add_circle,
+          label: 'Stock In',
         ),
         const SidebarXItem(
-          icon: Icons.people,
-          label: 'People',
+          icon: Icons.remove_circle,
+          label: 'Stock Out',
         ),
         const SidebarXItem(
-          icon: Icons.favorite,
-          label: 'Favorites',
-        ),
-        const SidebarXItem(
-          iconWidget: FlutterLogo(size: 20),
-          label: 'Flutter',
+          icon: Icons.archive,
+          label: 'Keep',
         ),
       ],
     );
@@ -190,12 +192,7 @@ class _ScreensExample extends StatelessWidget {
 Widget _getTitleByIndex({required int index, required ThemeData theme}) {
   switch (index) {
     case 0:
-      return Container(
-        child: Text(
-          'First',
-          style: theme.textTheme.headlineSmall,
-        ),
-      );
+      return HomeProduct();
     case 1:
       return Container(
         child: Text(
@@ -204,12 +201,7 @@ Widget _getTitleByIndex({required int index, required ThemeData theme}) {
         ),
       );
     case 2:
-      return Container(
-        child: Text(
-          'People',
-          style: theme.textTheme.headlineSmall,
-        ),
-      );
+      return HomeView();
     case 3:
       return Container(
         child: Text(
