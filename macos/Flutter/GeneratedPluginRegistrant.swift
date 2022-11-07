@@ -5,6 +5,8 @@
 import FlutterMacOS
 import Foundation
 
+import sidebar_bigeagle
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  SideBar.register(with: registry.registrar(forPlugin: "SideBar"))
 }
