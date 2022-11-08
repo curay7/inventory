@@ -30,7 +30,7 @@ class _HomeProductState extends State<HomeProduct> {
   String? _sortColumn;
   bool _sortAscending = true;
   bool _isLoading = true;
-  bool _showSelect = true;
+  bool _showSelect = false;
   var random = new Random();
 
   List<Map<String, dynamic>> _generateData({int n: 100}) {

@@ -164,24 +164,6 @@ class _ScreensExample extends StatelessWidget {
       builder: (context, child) {
         final pageComponent =
             _getTitleByIndex(index: controller.selectedIndex, theme: theme);
-        // switch (controller.selectedIndex) {
-        //   case 0:
-        //     return ListView.builder(
-        //       padding: const EdgeInsets.only(top: 10),
-        //       itemBuilder: (context, index) => Container(
-        //         height: 100,
-        //         width: double.infinity,
-        //         margin: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(20),
-        //           color: Theme.of(context).canvasColor,
-        //           boxShadow: const [BoxShadow()],
-        //         ),
-        //       ),
-        //     );
-        //   default:
-        //     return pageComponent;
-        // }
 
         return pageComponent;
       },
