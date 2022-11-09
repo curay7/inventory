@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:get/get.dart';
+import 'package:stockinv/app/modules/home/views/home_history.dart';
 import 'package:stockinv/app/modules/home/views/home_product.dart';
 import 'package:stockinv/app/modules/home/views/home_view.dart';
 
 import '../controllers/home_controller.dart';
+import 'home_outstock.dart';
 
 class HomeLayout extends GetView<HomeController> {
   const HomeLayout({Key? key}) : super(key: key);
@@ -176,21 +178,11 @@ Widget _getTitleByIndex({required int index, required ThemeData theme}) {
     case 0:
       return HomeProduct();
     case 1:
-      return Container(
-        child: Text(
-          'Searchasd',
-          style: theme.textTheme.headlineSmall,
-        ),
-      );
+      return HomeHistory();
     case 2:
-      return HomeView();
+      return HomeOutStock();
     case 3:
-      return Container(
-        child: Text(
-          'Favorites',
-          style: theme.textTheme.headlineSmall,
-        ),
-      );
+      return HomeOutStock();
     case 4:
       return Container(
         child: Text(

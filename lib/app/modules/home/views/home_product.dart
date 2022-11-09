@@ -16,7 +16,7 @@ class _HomeProductState extends State<HomeProduct> {
   int _total = 100;
   int? _currentPerPage = 10;
   List<bool>? _expanded;
-  String? _searchKey = "id";
+  String? _searchKey = "name";
 
   int _currentPage = 1;
   bool _isSearch = false;
@@ -37,13 +37,21 @@ class _HomeProductState extends State<HomeProduct> {
     final List source = List.filled(n, Random.secure());
     List<Map<String, dynamic>> temps = [];
     var i = 1;
+
+    const _chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random _rnd = Random();
+
+    String getRandomString(int length) =>
+        String.fromCharCodes(Iterable.generate(
+            length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
     print(i);
     // ignore: unused_local_variable
     for (var data in source) {
       temps.add({
         "id": i,
         "sku": "$i\000$i",
-        "name": "Product $i",
+        "name": getRandomString(15),
         "category": "Category-$i",
         "price": i * 10.00,
         "cost": "20.00",
@@ -100,6 +108,16 @@ class _HomeProductState extends State<HomeProduct> {
                 .toLowerCase()
                 .contains(value.toString().toLowerCase()))
             .toList();
+        if (_sourceFiltered.length == 0) {
+          _sourceFiltered = _sourceOriginal
+              .where((data) => data["id"]
+                  .toString()
+                  .toLowerCase()
+                  .contains(value.toString().toLowerCase()))
+              .toList();
+        }
+        print("Debug Here");
+        print(_sourceFiltered.length);
       }
 
       _total = _sourceFiltered.length;
@@ -130,7 +148,7 @@ class _HomeProductState extends State<HomeProduct> {
           show: true,
           flex: 2,
           sortable: true,
-          editable: true,
+          // editable: true,
           textAlign: TextAlign.left),
       DatatableHeader(
           text: "SKU",
@@ -204,10 +222,10 @@ class _HomeProductState extends State<HomeProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
             Container(
               margin: EdgeInsets.fromLTRB(10, 40, 10, 10),
               padding: EdgeInsets.all(0),
@@ -219,11 +237,11 @@ class _HomeProductState extends State<HomeProduct> {
                 shadowColor: Colors.black,
                 clipBehavior: Clip.none,
                 child: ResponsiveDatatable(
-                  title: TextButton.icon(
-                    onPressed: () => {},
-                    icon: Icon(Icons.add),
-                    label: Text("new item"),
-                  ),
+                  // title: TextButton.icon(
+                  //   onPressed: () => {},
+                  //   icon: Icon(Icons.add),
+                  //   label: Text("new item"),
+                  // ),
                   reponseScreenSizes: [ScreenSize.xs],
                   actions: [
                     if (_isSearch)
@@ -263,15 +281,16 @@ class _HomeProductState extends State<HomeProduct> {
                   showSelect: _showSelect,
                   autoHeight: false,
                   dropContainer: (data) {
-                    if (int.tryParse(data['id'].toString())!.isEven) {
-                      return Text("is Even");
-                    }
+                    // if (int.tryParse(data['id'].toString())!.isEven) {
+                    //   return Text("is Even");
+                    // }
                     return _DropDownContainer(data: data);
                   },
-                  onChangedRow: (value, header) {
-                    /// print(value);
-                    /// print(header);
-                  },
+                  // onChangedRow: (value, header) {
+                  //   print("print here");
+                  //   print(value);
+                  //   print(header);
+                  // },
                   onSubmittedRow: (value, header) {
                     /// print(value);
                     /// print(header);
@@ -305,15 +324,15 @@ class _HomeProductState extends State<HomeProduct> {
                   sortAscending: _sortAscending,
                   sortColumn: _sortColumn,
                   isLoading: _isLoading,
-                  onSelect: (value, item) {
-                    print("$value  $item ");
-                    if (value!) {
-                      setState(() => _selecteds.add(item));
-                    } else {
-                      setState(
-                          () => _selecteds.removeAt(_selecteds.indexOf(item)));
-                    }
-                  },
+                  // onSelect: (value, item) {
+                  //   print("$value  $item ");
+                  //   if (value!) {
+                  //     setState(() => _selecteds.add(item));
+                  //   } else {
+                  //     setState(
+                  //         () => _selecteds.removeAt(_selecteds.indexOf(item)));
+                  //   }
+                  // },
                   onSelectAll: (value) {
                     if (value!) {
                       setState(() => _selecteds =
@@ -392,17 +411,18 @@ class _HomeProductState extends State<HomeProduct> {
                           bottom: BorderSide(color: Colors.red, width: 1))),
                   selectedDecoration: BoxDecoration(
                     border: Border(
-                        bottom:
-                            BorderSide(color: Colors.green[300]!, width: 1)),
-                    color: Colors.green,
+                        bottom: BorderSide(color: Colors.grey[300]!, width: 1)),
+                    color: Colors.grey,
                   ),
                   headerTextStyle: TextStyle(color: Colors.white),
-                  rowTextStyle: TextStyle(color: Colors.green),
+                  rowTextStyle: TextStyle(color: Colors.grey[800]),
                   selectedTextStyle: TextStyle(color: Colors.white),
                 ),
               ),
             ),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }
