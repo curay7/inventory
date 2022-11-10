@@ -13,7 +13,7 @@ class HomeLayout extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = SidebarXController(selectedIndex: 1, extended: true);
+    final _controller = SidebarXController(selectedIndex: 2, extended: true);
     final _key = GlobalKey<ScaffoldState>();
     return Builder(
       builder: (context) {
