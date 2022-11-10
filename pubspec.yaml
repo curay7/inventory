@@ -17,6 +17,11 @@ dependencies:
   flutter_form_builder: ^7.7.0
   flutter_datetime_picker: ^1.5.1
   date_time_picker: ^2.1.0
+  intl: ^0.17.0
+  bs_flutter_datatable: ^1.2.5
+  http: ^0.13.5
+  fluro: ^2.0.4
+  bs_flutter_card: ^1.0.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

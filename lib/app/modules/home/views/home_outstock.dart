@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+
+import 'home_outstock_update.dart';
 
 class HomeOutStock extends StatefulWidget {
   const HomeOutStock({super.key});
@@ -11,6 +15,9 @@ class HomeOutStock extends StatefulWidget {
 }
 
 class _HomeOutStockState extends State<HomeOutStock> {
+  TextEditingController dateinput = TextEditingController();
+  //text editing controller for text field
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -58,26 +65,51 @@ class _HomeOutStockState extends State<HomeOutStock> {
                         onChanged: (val) => debugPrint(val.toString()),
                         builder: (FormFieldState field) {
                           return CupertinoFormRow(
-                            prefix: const Text('On Date: '),
-                            error: field.errorText != null
-                                ? Text(field.errorText!)
-                                : null,
-                            // child: CupertinoTextField(
-                            //   onChanged: (value) => field.didChange(value),
-                            // ),
-                            child: DateTimePicker(
-                              initialValue: '',
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2100),
-                              dateLabelText: 'Date',
-                              onChanged: (val) => print(val),
-                              validator: (val) {
-                                print(val);
-                                return null;
-                              },
-                              onSaved: (val) => print(val),
-                            ),
-                          );
+                              prefix: const Text('On Date: '),
+                              error: field.errorText != null
+                                  ? Text(field.errorText!)
+                                  : null,
+                              // child: CupertinoTextField(
+                              //   onChanged: (value) => field.didChange(value),
+                              // ),
+                              child: TextField(
+                                controller:
+                                    dateinput, //editing controller of this TextField
+                                decoration: InputDecoration(
+                                    icon: Icon(Icons
+                                        .calendar_today), //icon of text field
+                                    labelText:
+                                        "Enter Date" //label text of field
+                                    ),
+                                readOnly:
+                                    true, //set it true, so that user will not able to edit text
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(
+                                          2000), //DateTime.now() - not to allow to choose before today.
+                                      lastDate: DateTime(2101));
+
+                                  if (pickedDate != null) {
+                                    print(
+                                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                    String formattedDate =
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(pickedDate);
+                                    print(
+                                        formattedDate); //formatted date output using intl package =>  2021-03-16
+                                    //you can implement different kind of Date Format here according to your requirement
+
+                                    setState(() {
+                                      dateinput.text =
+                                          formattedDate; //set output date to TextField value.
+                                    });
+                                  } else {
+                                    print("Date is not selected");
+                                  }
+                                },
+                              ));
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (valueCandidate) {
@@ -180,12 +212,37 @@ class _HomeOutStockState extends State<HomeOutStock> {
                 SizedBox(
                   height: 17,
                 ),
-                ElevatedButton(
-                    onPressed: () {},
+                TextButton(
+                    onPressed: () {
+                      Get.to(HomeOutstockUpdate());
+                    },
                     child: Container(
                       width: 200,
-                      height: 30,
-                      child: Center(child: Text("TEST")),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Color(0xFF5F5FA7).withOpacity(0.53),
+                        ),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 97, 97, 143),
+                            Color.fromARGB(255, 75, 75, 112)
+                          ],
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.28),
+                            blurRadius: 30,
+                          )
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Confirm",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ))
                 // const SizedBox(height: 10),
                 // FormBuilderField<bool>(

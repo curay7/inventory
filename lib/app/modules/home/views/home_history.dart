@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 final List<Map> myProducts =
@@ -48,7 +50,7 @@ class CardList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                height: 80,
+                height: 60,
                 width: 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -89,26 +91,28 @@ class CardList extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 12,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              Flexible(
+                  child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: [
                     Text(
-                      "Tes",
-                      style: TextStyle(color: Colors.deepPurple, fontSize: 27),
+                      'John Carlo Ayuban',
                       textAlign: TextAlign.left,
                     ),
-                    Text("Delivery By",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                        textAlign: TextAlign.left),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text('Delivered By',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFF685BFF),
+                        )),
                   ],
                 ),
-              ),
+              )),
             ],
           ),
         ),
