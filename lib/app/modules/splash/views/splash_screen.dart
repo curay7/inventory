@@ -24,7 +24,7 @@ class _SpashScreenWidgetState extends State<SpashScreenWidget>
   @override
   initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 5), () {
       Get.toNamed("/home");
     });
     // Add listeners to this class

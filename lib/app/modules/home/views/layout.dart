@@ -6,6 +6,7 @@ import 'package:stockinv/app/modules/home/views/home_product.dart';
 import 'package:stockinv/app/modules/home/views/home_view.dart';
 
 import '../controllers/home_controller.dart';
+import 'home_keep.dart';
 import 'home_outstock.dart';
 
 class HomeLayout extends GetView<HomeController> {
@@ -13,7 +14,7 @@ class HomeLayout extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = SidebarXController(selectedIndex: 2, extended: true);
+    final _controller = SidebarXController(selectedIndex: 1, extended: true);
     final _key = GlobalKey<ScaffoldState>();
     return Builder(
       builder: (context) {
@@ -138,12 +139,12 @@ class ExampleSidebarX extends StatelessWidget {
           label: 'Stock In',
         ),
         const SidebarXItem(
-          icon: Icons.remove_circle,
-          label: 'Stock Out',
-        ),
-        const SidebarXItem(
           icon: Icons.archive,
           label: 'Keep',
+        ),
+        const SidebarXItem(
+          icon: Icons.info,
+          label: 'About Us',
         ),
       ],
     );
@@ -182,12 +183,11 @@ Widget _getTitleByIndex({required int index, required ThemeData theme}) {
     case 2:
       return HomeOutStock();
     case 3:
-      return HomeOutStock();
+      return HomeKeep();
     case 4:
       return Container(
-        child: Text(
-          'Custom iconWidget',
-          style: theme.textTheme.headlineSmall,
+        child: Center(
+          child: Text("About Us"),
         ),
       );
     case 5:

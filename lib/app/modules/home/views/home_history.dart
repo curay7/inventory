@@ -23,6 +23,7 @@ class HomeHistory extends StatelessWidget {
           itemBuilder: (BuildContext ctx, index) {
             return CardList(
               product: myProducts,
+              idProduct: index,
             );
           },
         ),
@@ -33,10 +34,12 @@ class HomeHistory extends StatelessWidget {
 
 class CardList extends StatelessWidget {
   final product;
+  final int idProduct;
 
   const CardList({
     Key? key,
     required this.product,
+    required this.idProduct,
   }) : super(key: key);
 
   @override
@@ -83,7 +86,7 @@ class CardList extends StatelessWidget {
                       ),
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
-                        child: Text("27",
+                        child: Text(idProduct.toString(),
                             style: TextStyle(
                                 fontSize: 17, color: Colors.grey[300])),
                       )
@@ -99,13 +102,14 @@ class CardList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'John Carlo Ayuban',
+                      'George Curay',
                       textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 10),
                     ),
                     SizedBox(
                       height: 4,
                     ),
-                    Text('Delivered By',
+                    Text('Delivered',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Color(0xFF685BFF),
