@@ -31,6 +31,8 @@ dependencies:
   flutter_animate: ^2.0.1
   font_awesome_flutter: ^10.2.1
   auto_size_text: ^3.0.0
+  supabase: ^1.1.2
+  supabase_flutter: ^1.1.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

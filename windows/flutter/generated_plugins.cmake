@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links_windows
   sidebar_bigeagle
   url_launcher_windows
 )

@@ -3,6 +3,7 @@ import 'package:sidebarx/sidebarx.dart';
 import 'package:get/get.dart';
 import 'package:stockinv/app/modules/home/views/home_history.dart';
 import 'package:stockinv/app/modules/home/views/home_product.dart';
+import 'package:stockinv/app/modules/home/views/home_test.dart';
 import 'package:stockinv/app/modules/home/views/home_view.dart';
 
 import '../controllers/home_controller.dart';
@@ -185,11 +186,7 @@ Widget _getTitleByIndex({required int index, required ThemeData theme}) {
     case 3:
       return HomeKeep();
     case 4:
-      return Container(
-        child: Center(
-          child: Text("About Us"),
-        ),
-      );
+      return HomeTest();
     case 5:
       return Container(
         child: Text(
